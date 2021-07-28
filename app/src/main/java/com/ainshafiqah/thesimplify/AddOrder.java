@@ -106,18 +106,19 @@ public class AddOrder extends AppCompatActivity {
 
     private void SaveOrderToDB(String mname, String mphone, String maddress, String mcustordate, String mcustship, String mcusttrack) {
         HashMap<String, Object> productMap = new HashMap<>();
+        productMap.put("orderID",userID);
         productMap.put("name", mname);
         productMap.put("phone", mphone);
         productMap.put("address", maddress);
-        productMap.put("order_date", mcustordate);
-        productMap.put("ship_date", mcustship);
-        productMap.put("track_num", mcusttrack);
+        productMap.put("orderDate", mcustordate);
+        productMap.put("shipmentDate", mcustship);
+        productMap.put("trackingNum", mcusttrack);
 
         orderRef.child(userID).updateChildren(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(AddOrder.this, OrderData.class);
+                    Intent intent = new Intent(AddOrder.this, OrderActivity.class);
                     startActivity(intent);
                     finish();
 

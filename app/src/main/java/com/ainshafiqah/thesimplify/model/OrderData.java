@@ -1,6 +1,7 @@
 package com.ainshafiqah.thesimplify.model;
 
 public class OrderData {
+    String orderID;
     String name;
     String phone;
     String address;
@@ -9,7 +10,8 @@ public class OrderData {
     String trackingNum;
     String status;
 
-    public OrderData(String name, String phone, String address, String orderDate, String shipmentDate, String trackingNum, String status) {
+    public OrderData(String orderID,String name, String phone, String address, String orderDate, String shipmentDate, String trackingNum, String status) {
+        this.orderID = orderID;
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -21,6 +23,14 @@ public class OrderData {
 
     public OrderData(){
 
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 
     public String getName() {

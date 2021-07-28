@@ -1,11 +1,14 @@
 package com.ainshafiqah.thesimplify.adapter;
 
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ainshafiqah.thesimplify.R;
@@ -32,7 +35,34 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
         holder.address.setText(model.getAddress());
         holder.statusDetail.setText(model.getStatus());
         holder.trackingNum.setText(model.getTrackingNum());
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                CharSequence theoptions[] = new CharSequence[]{
+                        "Yes",
+                        "No",
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Are you sure you want to delete this item?");
+                builder.setItems(theoptions, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        if(which == 0){
+                            //delete item
+                            notifyItemRemoved(position);
+                        }if(which == 1){
+                            Toast.makeText(v.getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                return false;
+            }
+        });
     }
+
+
 
     @Override
     public OrderAdapter.OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

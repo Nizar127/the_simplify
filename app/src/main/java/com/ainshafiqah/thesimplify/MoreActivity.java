@@ -40,14 +40,13 @@ public class MoreActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
 
-
         bottommenu = findViewById(R.id.bottom_navigation);
         bottommenu.setSelectedItemId(R.id.more);
 
-        pEmail = findViewById(R.id.textEmail);
-        pName = findViewById(R.id.textName);
-        pPhone = findViewById(R.id.textPhone);
-        pCompany = findViewById(R.id.textCompany);
+        pEmail = findViewById(R.id.EmailData);
+        pName = findViewById(R.id.NameData);
+        pPhone = findViewById(R.id.PhoneData);
+        pCompany = findViewById(R.id.CompanyData);
 
         pLogout = findViewById(R.id.btnSignOut);
         pEdit = findViewById(R.id.btnEdit);

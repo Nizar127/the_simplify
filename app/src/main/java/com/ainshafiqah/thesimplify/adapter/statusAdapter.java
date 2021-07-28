@@ -1,5 +1,6 @@
 package com.ainshafiqah.thesimplify.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ainshafiqah.thesimplify.R;
+import com.ainshafiqah.thesimplify.UpdateStatus;
 import com.ainshafiqah.thesimplify.model.OrderData;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -31,6 +33,15 @@ public class statusAdapter extends FirebaseRecyclerAdapter<OrderData, statusAdap
         holder.statusAdress.setText(model.getAddress());
         holder.statusDetail.setText(model.getStatus());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), UpdateStatus.class);
+                intent.putExtra("orderID",model.getOrderID());
+                view.getContext().startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -51,6 +62,8 @@ public class statusAdapter extends FirebaseRecyclerAdapter<OrderData, statusAdap
             statusAdress       = itemView.findViewById(R.id.addressstatusorder);
             statusTrackingNum  = itemView.findViewById(R.id.trackingNumstatusorder);
             statusDetail       = itemView.findViewById(R.id.statusOrderDetail);
+
+
         }
     }
 }

@@ -3,11 +3,14 @@ package com.ainshafiqah.thesimplify;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.ainshafiqah.thesimplify.adapter.OrderAdapter;
 import com.ainshafiqah.thesimplify.model.OrderData;
@@ -25,18 +28,29 @@ public class OrderActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     OrderAdapter mordersAdapter;
     DatabaseReference mbase;
+    ImageView imgOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-        mbase = FirebaseDatabase.getInstance().getReference("Order List");
+        mbase = FirebaseDatabase.getInstance().getReference("Order");
+        imgOrder = findViewById(R.id.imgOrder);
 
         recyclerView = findViewById(R.id.recyclerviewSystem);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        //recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         bottommenu = findViewById(R.id.bottom_navigation);
         bottommenu.setSelectedItemId(R.id.home);
+
+        imgOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OrderActivity.this, AddOrder.class);
+                startActivity(intent);
+            }
+        });
 
         bottommenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

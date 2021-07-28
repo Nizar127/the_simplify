@@ -60,8 +60,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 //change email
                 String email = mEmail.getText().toString();
+                String name = mName.getText().toString();
+                String num = mNum.getText().toString();
                 HashMap<String, Object> userMap = new HashMap<>();
-                userMap.put("name",email);
+                userMap.put("email",email);
+                userMap.put("name",name);
+                userMap.put("phoneNum",num);
                 dbRef.child(userID).updateChildren(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

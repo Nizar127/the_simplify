@@ -3,6 +3,7 @@ package com.ainshafiqah.thesimplify;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -21,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class StatusActivity extends AppCompatActivity {
 
-    BottomNavigationView bottommenu;
 
     RecyclerView recyclerView;
     statusAdapter mordersAdapter;
@@ -35,8 +35,9 @@ public class StatusActivity extends AppCompatActivity {
 
         mbase = FirebaseDatabase.getInstance().getReference("Order List");
 
-        recyclerView = findViewById(R.id.recyclerviewSystem);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView = findViewById(R.id.recyclerviewCheckOrder);
+        //recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
         FirebaseRecyclerOptions<OrderData> options = new FirebaseRecyclerOptions.Builder<OrderData>()
